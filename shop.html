@@ -1,0 +1,901 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Attire - Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">  
+    <style>
+      /* General Styles */
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Sticky Box */
+      .sticky-box {
+        background-color: #f8f8f8;
+        text-align: center;
+        padding: 10px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .sticky-box .discount {
+        font-size: 16px;
+        color: black;
+      }
+
+      /* Upper Part */
+      .header-container {
+        background-color: black;
+        color: white;
+        padding: 15px 0;
+      }
+      .header-container .name {
+        font-size: 36px;
+        font-weight: bold;
+        margin: 0;
+      }
+      .header-container .form-control {
+        width: 150px;
+        background-color: #333;
+        color: white;
+        border: none;
+      }
+      .header-container .form-control::placeholder {
+        color: #ccc;
+      }
+      .header-container .form-select {
+        background-color: #333;
+        color: white;
+        border: none;
+        width: auto;
+        font-size: 18px;
+      }
+      .header-container .whatsappicon img,
+      .header-container .phoneicon,
+      .header-container .tracker-icon-desktop svg,
+      .header-container .header__icon svg {
+        fill: white;
+      }
+      .header-container .tracker-icon-desktop {
+        gap: 15px;
+        align-items: center;
+      }
+
+      /* Navbar */
+      .navbar-custom {
+        background-color: black;
+        padding: 10px 0;
+      }
+      .navbar-custom .nav-link {
+        color: white !important;
+        font-size: 22px;
+        margin: 0 15px;
+      }
+      .navbar-custom .nav-link:hover {
+        color: pink !important;
+        text-decoration: underline;
+      }
+      .navbar-custom .nav-link.active {
+        font-weight: bold;
+      }
+      .navbar-custom .navbar-toggler {
+        border-color: white;
+      }
+      .navbar-custom .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      }
+
+      /* Video */
+      .custom-video {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+        display: block;
+        margin: 0 auto;
+      }
+
+      /* Headings */
+      .heading1 {
+        font-size: 36px;
+        font-weight: bold;
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      /* Product Sections */
+      .clothing-images {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin: 30px 0;
+      }
+      .clothing-images img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .clothing-images h5 {
+        font-size: 18px;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      /* Clothing Filter Section */
+      /* .clothing {
+        margin: 20px 0;
+      } */
+      .clothing .price {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      .clothing .description1 {
+        font-size: 18px;
+        margin: 0;
+      }
+      .clothing .description2 {
+        font-size: 18px;
+        margin: 0 10px;
+      }
+      .clothing .dress {
+        font-size: 16px;
+        padding: 5px;
+      }
+      .clothing .filter {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .clothing .filter h2 {
+        font-size: 18px;
+        margin: 0;
+      }
+      .clothing .dropdown {
+        margin: 0 10px;
+      }
+      .clothing .dropdown-toggle {
+        font-size: 18px;
+        color: black;
+        background: none;
+        border: none;
+      }
+      .clothing .dropdown-menu {
+        font-size: 16px;
+      }
+      .clothing .dropdown-menu li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 5px 10px;
+      }
+      .clothing .dropdown-menu input {
+        width: 20px;
+        height: 20px;
+      }
+      .clothing .dropdown-menu .dropdown-item {
+        margin: 0;
+      }
+      .clothing .price-range {
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+      }
+      .clothing .price-range button {
+        width: 80px;
+        height: 35px;
+        font-size: 14px;
+      }
+
+      /* Product Grid */
+      .album {
+        background-color: #f8f9fa;
+      }
+      .custom-container {
+        padding: 0 15px;
+      }
+      .sizing {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+      }
+      .card-body h6 {
+        font-size: 16px;
+        margin: 5px 0;
+        color: black;
+      }
+
+      /* Footer */
+      footer {
+        background-color: rgb(245, 241, 241);
+        color: black;
+      }
+      footer h5 {
+        font-size: 25px;
+        margin-bottom: 20px;
+      }
+      footer .nav-link {
+        color: #555 !important;
+        font-size: 18px;
+        padding: 2px 0;
+      }
+      footer .nav-link:hover {
+        color: black !important;
+      }
+      footer .fa-brands {
+        color: black;
+        font-size: 35px;
+      }
+      footer .payment-methods {
+        display: flex;
+        gap: 5px;
+        margin-top: 15px;
+      }
+      footer .payment-methods img {
+        width: 50px;
+        height: auto;
+      }
+      footer p {
+        font-size: 13px;
+        margin-top: 30px;
+      }
+
+       /* Footer */
+      /* Footer */
+    footer {
+      background-color: rgb(245, 241, 241);
+      color: black;
+      padding: 40px 0; /* Adjusted padding for better spacing */
+    }
+
+    footer h5 {
+      font-size: 25px;
+      margin-bottom: 20px;
+      text-align: center; /* Center headings on all screens */
+    }
+
+    footer .nav-link {
+      color: #555 !important;
+      font-size: 18px;
+      padding: 5px 0; /* Increased padding for better touch targets */
+    }
+
+    footer .nav-link:hover {
+      color: black !important;
+    }
+
+    footer .fa-brands {
+      color: black;
+      font-size: 30px; /* Slightly smaller default size for better scaling */
+    }
+
+    footer .d-flex.flex-column.align-items-center.justify-content-center {
+      text-align: center;
+    }
+
+    footer .d-flex.gap-2 img {
+      width: 40px; /* Slightly smaller images for better fit */
+      height: auto;
+      margin-top: 10px;
+    }
+
+    footer p {
+      font-size: 13px;
+      margin-top: 20px;
+    }
+
+    /* Media Queries for Footer Responsiveness */
+    @media (max-width: 992px) {
+      footer .row {
+        flex-direction: column; /* Stack columns vertically */
+        align-items: center;
+      }
+
+      footer .col {
+        margin-bottom: 20px; /* Consistent spacing between sections */
+        width: 100%;
+        text-align: center;
+      }
+
+      footer h5 {
+        font-size: 22px; /* Slightly smaller for medium screens */
+        margin-left: 0 !important; /* Remove hardcoded margins */
+      }
+
+      footer .nav.flex-column {
+        margin-left: 0 !important; /* Remove hardcoded margins */
+        align-items: center;
+      }
+
+      footer .d-flex.justify-content-center.justify-content-md-start {
+        margin-left: 0 !important; /* Remove hardcoded margin */
+        justify-content: center;
+        margin-top: 20px; /* Adjusted for better spacing */
+      }
+
+      footer .fa-brands {
+        font-size: 28px; /* Adjust icon size */
+      }
+    }
+
+    @media (max-width: 768px) {
+      footer {
+        padding: 20px 0; /* Reduced padding for smaller screens */
+      }
+
+      footer h5 {
+        font-size: 20px; /* Smaller headings for mobile */
+      }
+
+      footer .nav-link {
+        font-size: 16px; /* Smaller font for better fit */
+      }
+
+      footer .fa-brands {
+        font-size: 24px; /* Smaller icons for mobile */
+        margin: 0 10px; /* Better spacing for touch */
+      }
+
+      footer .d-flex.gap-2 img {
+        width: 35px; /* Smaller payment icons */
+      }
+
+      footer p {
+        font-size: 12px; /* Smaller copyright text */
+        margin-top: 15px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      footer {
+        padding: 15px 0; /* Further reduced padding */
+      }
+
+      footer h5 {
+        font-size: 18px; /* Even smaller headings */
+      }
+
+      footer .nav-link {
+        font-size: 14px; /* Smaller links for compact screens */
+      }
+
+      footer .fa-brands {
+        font-size: 20px; /* Smaller icons */
+        margin: 0 8px;
+      }
+
+      footer .d-flex.gap-2 img {
+        width: 30px; /* Smallest payment icons */
+      }
+
+      footer p {
+        font-size: 11px; /* Smallest copyright text */
+      }
+    }
+      /* Media Queries */
+      @media (max-width: 992px) {
+        .header-container .name {
+          font-size: 28px;
+        }
+        .header-container .form-control {
+          width: 120px;
+        }
+        .header-container .tracker-icon-desktop {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .navbar-custom .nav-link {
+          font-size: 18px;
+          margin: 5px 0;
+        }
+        .clothing .price {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .clothing .dropdown {
+          margin: 5px 0;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header-container {
+          padding: 10px 0;
+        }
+        .header-container .name {
+          font-size: 24px;
+          margin: 10px 0;
+        }
+        .header-container .d-flex {
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+        }
+        .header-container .tracker-icon-desktop {
+          margin-top: 10px;
+        }
+        .header-container .form-control,
+        .header-container .form-select {
+          width: 100%;
+          max-width: 200px;
+        }
+        .navbar-custom .nav-link {
+          font-size: 16px;
+        }
+        .heading1 {
+          font-size: 28px;
+        }
+        .clothing-images {
+          flex-direction: column;
+          gap: 20px;
+        }
+        .clothing-images img {
+          width: 120px;
+          height: 120px;
+        }
+        .clothing-images h5 {
+          font-size: 16px;
+        }
+        .sizing {
+          height: 200px;
+        }
+        .card-body h6 {
+          font-size: 14px;
+        }
+       
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sticky-box">
+      <span class="discount">Free delivery for orders above Rs 4999 within Pakistan.</span>
+    
+
+    <div class="container-fluid header-container d-flex flex-column flex-md-row justify-content-between align-items-center">
+      <div class="d-flex align-items-center gap-3">
+        <a id="cstm-whatsapp_link" href="https://wa.me/923151110333?text" class="whatsappicon" target="_blank">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/2635/3244/files/40_x_40_Whatsapp_PNG.png?v=1642676551" alt="Lime Light Whatapps" class="img-fluid" style="width: 32px; height: 32px;">
+        </a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="31px" height="31px" class="phoneicon" viewBox="0 0 37 37" fill="none">
+          <g clip-path="url(#clip0)">
+            <path d="M36.0468 27.3017L31.4483 22.7022C30.2214 21.4753 28.0778 21.4732 26.8488 22.7022L26.082 23.469L35.2803 32.6668L36.0468 31.9003C37.32 30.6269 37.3158 28.5685 36.0468 27.3017Z" fill="white"></path>
+            <path d="M24.5064 24.9595C23.5387 25.7091 22.1583 25.6792 21.2742 24.7931L12.1819 15.6946C11.2957 14.8084 11.2659 13.427 12.0155 12.4617L2.83843 3.28516C-1.10951 7.88702 -0.955148 14.8211 3.4021 19.1784L17.7904 33.5729C21.9717 37.7541 28.8206 38.3086 33.6839 34.1364L24.5064 24.9595Z" fill="white"></path>
+            <path d="M14.2734 5.52046L9.67488 0.920978C8.44796 -0.305945 6.30435 -0.30804 5.0754 0.920978L4.30859 1.68779L13.5068 10.8855L14.2734 10.1189C15.5465 8.84575 15.5423 6.78734 14.2734 5.52046Z" fill="white"></path>
+          </g>
+          <defs>
+            <clipPath id="clip0">
+              <rect width="37" height="37" fill="white"></rect>
+            </clipPath>
+          </defs>
+        </svg>
+        <input type="search" class="text form-control" aria-label="Search" placeholder="Search">
+      </div>
+      <h1 class="name text-center text-md-start">ATTIRE</h1>
+      <div class="tracker-icon-desktop d-flex align-items-center">
+        <a href="https://limelight.ginkgoretail.net/ordertracking/647494837638">
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="45" height="45" viewBox="0 0 133.000000 81.000000" preserveAspectRatio="xMidYMid meet" class="img-fluid">
+            <g transform="translate(0.000000,81.000000) scale(0.100000,-0.100000)" fill="white" stroke="none">
+              <path d="M174 785 c-20 -20 -25 -33 -22 -68 l3 -42 198 -5 c182 -5 200 -7 213 -24 19 -27 18 -80 -3 -97 -12 -10 -67 -15 -212 -19 -188 -5 -196 -6 -196 -25 0 -19 8 -20 143 -25 160 -6 172 -11 172 -76 0 -52 -18 -58 -174 -64 l-141 -5 -3 -75 c-5 -120 11 -150 79 -150 35 0 39 2 39 26 0 37 32 85 72 108 44 27 119 26 156 0 37 -28 72 -82 72 -110 l0 -24 154 0 153 0 6 28 c10 49 50 95 99 116 42 17 52 18 89 7 54 -16 94 -57 109 -109 l11 -42 54 0 c76 0 85 16 85 145 0 122 -10 145 -69 162 -57 16 -73 32 -109 106 -43 90 -69 110 -147 115 l-65 4 0 62 c0 40 -6 69 -16 84 l-15 22 -355 0 -355 0 -25 -25z m884 -211 c21 -15 82 -121 82 -144 0 -6 -38 -10 -100 -10 l-100 0 0 85 0 85 48 0 c27 0 57 -7 70 -16z"></path>
+              <path d="M90 626 c-6 -8 -10 -25 -8 -38 l3 -23 227 -3 228 -2 6 25 c13 52 1 55 -231 55 -173 0 -215 -3 -225 -14z"></path>
+              <path d="M17 439 c-20 -12 -22 -42 -3 -58 9 -8 75 -11 217 -9 l204 3 3 23 c7 49 -6 52 -212 52 -111 0 -198 -5 -209 -11z"></path>
+              <path d="M360 214 c-56 -40 -72 -92 -45 -148 33 -69 120 -88 175 -39 79 72 42 189 -62 200 -31 3 -50 -1 -68 -13z m100 -73 c16 -31 12 -49 -15 -67 -23 -15 -27 -15 -50 0 -27 18 -33 54 -13 74 19 19 66 15 78 -7z"></path>
+              <path d="M972 210 c-39 -24 -55 -62 -49 -114 7 -53 43 -87 98 -93 97 -10 159 81 114 167 -30 58 -104 76 -163 40z m113 -80 c19 -59 -73 -95 -94 -37 -11 30 -2 57 23 66 26 10 64 -6 71 -29z"></path>
+            </g>
+          </svg>
+        </a>
+        <select name="country" id="countries" class="country form-select">
+          <option value="volvo">PKR</option>
+          <option value="saab">GBP</option>
+          <option value="opel">USD</option>
+        </select>
+        <a href="/cart" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+          <span class="svg-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 46 38" fill="none" class="img-fluid">
+            <path d="M14.1982 31.1837C12.5533 31.1837 11.2197 32.5557 11.2197 34.2482C11.2197 35.9406 12.5533 37.3127 14.1982 37.3127C15.8432 37.3127 17.1768 35.9406 17.1768 34.2482C17.1768 32.5557 15.8432 31.1837 14.1982 31.1837Z" fill="white"></path>
+            <path d="M35.0474 31.1837C33.4024 31.1837 32.0688 32.5557 32.0688 34.2482C32.0688 35.9406 33.4024 37.3127 35.0474 37.3127C36.6924 37.3127 38.0259 35.9406 38.0259 34.2482C38.0259 32.5557 36.6924 31.1837 35.0474 31.1837Z" fill="white"></path>
+            <path d="M8.24121 0.538818C8.95308 0.538818 9.56374 1.05677 9.70186 1.77213L9.70781 1.80478L13.9584 26.5869H36.5371C37.3498 26.5869 38.0105 27.2567 38.0261 28.089L38.0264 28.1192C38.0264 28.9553 37.3754 29.6351 36.5664 29.6511L36.5371 29.6514H12.709C11.9971 29.6514 11.3865 29.1335 11.2483 28.4181L11.2424 28.3855L6.99172 3.6033H2.28418C1.47148 3.6033 0.810819 2.93353 0.795205 2.10121L0.794922 2.07106C0.794922 1.2349 1.4459 0.555175 2.25487 0.539109L2.28418 0.538818H8.24121Z" fill="white"></path>
+            <path d="M9.73096 5.1355L38.6066 5.1355C39.2762 5.13502 39.9107 5.44359 40.3354 5.97623C40.7512 6.49777 40.9228 7.18029 40.8065 7.84247L40.7987 7.88471L38.118 21.6751C37.9112 22.7379 37.0116 23.5059 35.9624 23.5221L35.927 23.5224H12.7095C11.887 23.5224 11.2202 22.8364 11.2202 21.9902C11.2202 21.154 11.8712 20.4743 12.6802 20.4582L12.7095 20.4579H35.317L37.6999 8.19989L9.73096 8.19998C8.91825 8.19998 8.2576 7.53021 8.24198 6.69789L8.2417 6.66774C8.2417 5.83158 8.89268 5.15185 9.70165 5.13579L9.73096 5.1355Z" fill="white"></path>
+          </svg></span>
+          <span class="visually-hidden">Cart</span>
+        </a>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="shop.html">Shop</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="services.html">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about us.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="faqs.html">FAQ</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    </div>
+
+    <hr style="color: rgb(201, 195, 195);">
+
+    <video class="custom-video" src="https://cdn.shopify.com/videos/c/o/v/e6c662eadc0642e4aa530caf2836dd63.mp4" muted playsinline loop autoplay loading="lazy"></video>
+
+    <h1 class="heading1">LAWN UNSTITCHED</h1>
+
+    <div class="clothing-images">
+      <span>
+        <img src="./images/d.1.avif" alt="..." class="img-thumbnail">
+        <h5>PRINTED</h5>
+      </span>
+      <span>
+        <img src="./images/d.2.avif" alt="..." class="img-thumbnail">
+        <h5>EMBROIDERY</h5>
+      </span>
+    </div>
+
+    <div class="clothing container">
+      <div class="price">
+        <p class="description1">24 Products</p>
+        <h6 class="description2">SORT BY:</h6>
+        <select name="dress" id="dress" class="dress form-select w-auto">
+          <option value="featured">FEATURED</option>
+          <option value="price1">PRICE, LOW TO HIGH</option>
+          <option value="price2">PRICE, HIGH TO LOW</option>
+          <option value="price3">DATE, OLD TO NEW</option>
+          <option value="price4">DATE, NEW TO OLD</option>
+        </select>
+        <span class="filter">
+          <svg class="cstm-filter-svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 17 17" fill="none">
+            <path d="M3.00586 0H2.00977V12.0195H1.01367V15.0078H2.00977V17H3.00586V15.0078H4.00195V12.0195H3.00586V0Z" fill="black"></path>
+            <path d="M14.9922 12.0195V0H13.9961V12.0195H13V15.0078H13.9961V17H14.9922V15.0078H15.9883V12.0195H14.9922Z" fill="black"></path>
+            <path d="M11.0078 0H10.0117V7.37109H9.01562V10.3594H10.0117V17H11.0078V10.3594H12.0039V7.37109H11.0078V0Z" fill="black"></path>
+            <path d="M6.99023 0H5.99414V1.78141H4.99805V4.7697H5.99414V17H6.99023V4.7697H7.98633V1.78141H6.99023V0Z" fill="black"></path>
+          </svg>
+          <h2>FILTER</h2>
+        </span>
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            SEASON
+          </button>
+          <ul class="dropdown-menu">
+            <li><input type="checkbox"><a class="dropdown-item" href="#">ALL</a></li>
+            <li><input type="checkbox"><a class="dropdown-item" href="#">SUMMER</a></li>
+            <li><input type="checkbox"><a class="dropdown-item" href="#">WINTER</a></li>
+          </ul>
+        </div>
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            PRICE
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">The highest price is Rs.5000</a></li>
+            <div class="price-range">
+              <button type="button">From</button>
+              <button type="button">To</button>
+            </div>
+          </ul>
+        </div>
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            FABRIC
+          </button>
+          <ul class="dropdown-menu">
+            <li><input type="checkbox"><a class="dropdown-item" href="#">JACQUARD</a></li>
+            <li><input type="checkbox"><a class="dropdown-item" href="#">LAWN</a></li>
+            <li><input type="checkbox"><a class="dropdown-item" href="#">RAWSILK</a></li>
+            <li><input type="checkbox"><a class="dropdown-item" href="#">STAIN</a></li>
+          </ul>
+        </div>
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            CATEGORY TYPE
+          </button>
+          <ul class="dropdown-menu">
+            <li><input type="checkbox"><a class="dropdown-item" href="#">SHIRT</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="album py-5 bg-light">
+        <div class="custom-container container">
+          <div class="row g-3">
+            <div class="row g-3">
+              <div class="col-6 col-md-3">
+                <a href="card21.html"><img class="sizing img-fluid" src="./images/21.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">2 Piece Lawn Suit-Embroidered (Unstitched).</h6>
+                    <h6>Rs. 3,499</h6>
+                  </span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="card22.html"><img class="sizing img-fluid" src="./images/22.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">Lawn Shirt Printed (Unstitched).</h6>
+                    <h6>Rs. 1,499</h6>
+                  </span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="card23.html"><img class="sizing img-fluid" src="./images/23.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">Lawn Shirt Printed (Unstitched).</h6>
+                    <h6>Rs. 1,499</h6>
+                  </span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="card24.html"><img class="sizing img-fluid" src="./images/24.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">3 Piece Lawn Suit-Printed (Unstitched).</h6>
+                    <h6>Rs. 3,099</h6>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="col-6 col-md-3">
+                <a href="card25.html"><img class="sizing img-fluid" src="./images/25.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">2 Piece Lawn Suit-Printed (Unstitched).</h6>
+                    <h6>Rs. 2,699</h6>
+                  </span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="card26.html"><img class="sizing img-fluid" src="./images/26.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">2 Piece Lawn Suit-Embroidered (Unstitched).</h6>
+                    <h6>Rs. 3,499</h6>
+                  </span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="card27.html"><img class="sizing img-fluid" src="./images/27.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">3 Piece Lawn Suit-Printed (Unstitched).</h6>
+                    <h6>Rs. 3,499</h6>
+                  </span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="card28.html"><img class="sizing img-fluid" src="./images/28.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">3 Piece Lawn Suit-Paste Print (Unstitched).</h6>
+                    <h6>Rs. 4,199</h6>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="col-6 col-md-3">
+                <a href="card29.html"><img class="sizing img-fluid" src="./images/29.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">3 Piece Lawn Suit-Paste Print (Unstitched).</h6>
+                    <h6>Rs. 4,199</h6>
+                  </span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="card30.html"><img class="sizing img-fluid" src="./images/30.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">3 Piece Lawn Suit-Printed (Unstitched).</h6>
+                    <h6>Rs. 3,599</h6>
+                  </span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="card31.html"><img class="sizing img-fluid" src="./images/31.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">3 Piece Lawn Suit-Printed (Unstitched).</h6>
+                    <h6>Rs. 3,599</h6>
+                  </span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="card32.html"><img class="sizing img-fluid" src="./images/32.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">Lawn Shirt-Printed (Unstitched).</h6>
+                    <h6>Rs. 1,599</h6>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="col-6 col-md-3">
+                <a href="card33.html"><img class="sizing img-fluid" src="./images/33.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">3 Piece Lawn Suit-Embroidered (Unstitched).</h6>
+                    <h6>Rs. 8,499</h6>
+                  </span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="card34.html"><img class="sizing img-fluid" src="./images/34.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">3 Piece Lawn Suit-Embroidered (Unstitched).</h6>
+                    <h6>Rs. 8,699</h6>
+                  </span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="card35.html"><img class="sizing img-fluid" src="./images/35.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">3 Piece Lawn Suit-Embroidered (Unstitched).</h6>
+                    <h6>Rs. 7,999</h6>
+                  </span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="card36.html"><img class="sizing img-fluid" src="./images/36.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">3 Piece Lawn Suit-Printed (Unstitched).</h6>
+                    <h6>Rs. 3,799</h6>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="col-6 col-md-3">
+                <a href="card37.html"><img class="sizing img-fluid" src="./images/37.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">3 Piece Lawn Suit-Printed (Unstitched).</h6>
+                    <h6>Rs. 3,499</h6>
+                  </span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="card38.html"><img class="sizing img-fluid" src="./images/38.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">3 Piece Lawn Suit-Printed (Unstitched).</h6>
+                    <h6>Rs. 3,199</h6>
+                  </span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="card39.html"><img class="sizing img-fluid" src="./images/39.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">3 Piece Lawn Suit-Embroidered (Unstitched).</h6>
+                    <h6>Rs. 7,499</h6>
+                  </span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="card40.html"><img class="sizing img-fluid" src="./images/40.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">2 Piece Lawn Suit-Printed (Unstitched).</h6>
+                    <h6>Rs. 2,499</h6>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="col-6 col-md-3">
+                <a href="card41.html"><img class="sizing img-fluid" src="./images/41.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">3 Piece Lawn Suit-Paste Print (Unstitched).</h6>
+                    <h6>Rs. 4,099</h6>
+                  </span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="card42.html"><img class="sizing img-fluid" src="./images/42.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">3 Piece Lawn Suit-Printed (Unstitched).</h6>
+                    <h6>Rs. 3,899</h6>
+                  </span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="card43.html"><img class="sizing img-fluid" src="./images/43.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">3 Piece Lawn Suit-Printed (Unstitched).</h6>
+                    <h6>Rs. 2,999</h6>
+                  </span>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="card44.html"><img class="sizing img-fluid" src="./images/44.webp"></a>
+                <div class="card-body">
+                  <span>
+                    <h6 class="card-text">3 Piece Lawn Suit-Printed (Unstitched).</h6>
+                    <h6>Rs. 2,999</h6>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <div class="container-fluid">
+          <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5" style="background-color:rgb(245, 241, 241); color: black;">
+            <div class="col mb-3"></div>
+            <div class="col mb-3">
+              <h5 class="text-center text-md-start" style="margin-left: 110px; font-size: 25px;">CUSTOMER CARE</h5>
+              <ul class="nav flex-column" style="margin-left: 110px; gap: 2px; margin-top: 22px; font-size: 18px;">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">ORDER TRACKING</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">SHIPPING & HANDLING</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">EXCHANGE POLICY</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">ORDER CANCELLATION POLICY</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">TERMS OF USE</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQ'S</a></li>
+              </ul>
+            </div>
+            <div class="col mb-3 d-flex justify-content-center justify-content-md-start" style="margin-top: 350px; margin-left: 112px; gap: 15px;">
+              <i class="fa-brands fa-facebook" style="font-size: 35px;"></i>
+              <i class="fa-brands fa-instagram" style="font-size: 35px;"></i>
+              <i class="fa-brands fa-youtube" style="font-size: 35px;"></i>
+            </div>
+            <div class="col mb-3">
+              <h5 class="text-center text-md-start" style="margin-left: -40px; font-size: 25px;">INFORMATION</h5>
+              <ul class="nav flex-column" style="margin-left: -40px; gap: 2px; margin-top: 22px; font-size: 18px;">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">ABOUT US</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">CONTACT US</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">CAREERS</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">STORE LOCATOR</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">BLOGS</a></li>
+              </ul>
+            </div>
+            <div class="col mb-3"></div>
+            <div class="col mb-3"></div>
+            <div class="d-flex flex-column align-items-center justify-content-center">
+              <h6 style="font-size: 18px;">We Accept</h6>
+              <div class="d-flex gap-2">
+                <img src="./cards/visa.png" alt="" style="width: 50px; height: 20px;margin-top: 15px;" class="img-fluid">
+                <img src="./cards/mastercard.png" alt="" style="width: 50px;" class="img-fluid">
+              </div>
+              <p style="font-size: 13px; margin-top: 30px;">© 2025, Attirepk Powered by Shopify</p>
+            </div>
+          </footer>
+        </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  </body>
+</html>
