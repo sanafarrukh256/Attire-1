@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <style>
+      /* General Styles */
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Container and Section Styling */
+      .container {
+        padding: 50px 15px;
+      }
+
+      .heading {
+        font-size: 36px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .parentdiv1 {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+      }
+
+      .cardimg1 {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .textcard1 {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      .cart {
+        background-color: black;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        margin-top: 20px;
+        width: 100%;
+        max-width: 200px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cart:hover {
+        background-color: #333;
+      }
+
+      /* Media Queries for Responsiveness */
+      @media (min-width: 768px) {
+        .parentdiv1 {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 30px;
+          align-items: start;
+        }
+
+        .textcard1,
+        .parentdiv1 p,
+        .parentdiv1 ul,
+        .parentdiv1 h2,
+        .parentdiv1 > div > p {
+          text-align: left;
+        }
+
+        .cart {
+          width: auto;
+          margin-left: 0;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 30px 15px;
+        }
+
+        .heading {
+          font-size: 28px;
+        }
+
+        .textcard1 {
+          font-size: 18px;
+        }
+
+        .parentdiv1 h6[style*="font-size: 25px"] {
+          font-size: 22px;
+        }
+
+        .parentdiv1 p[style*="font-size: 20px"] {
+          font-size: 16px;
+        }
+
+        .parentdiv1 div[style*="gap: 10px"] {
+          gap: 8px;
+          justify-content: center;
+        }
+
+        .parentdiv1 button[style*="width: 45px"] {
+          width: 40px;
+          height: 40px;
+          font-size: 14px;
+        }
+
+        .parentdiv1 ul {
+          font-size: 14px;
+          margin-top: 30px;
+        }
+
+        .parentdiv1 h2[style*="margin-top: 50px"] {
+          font-size: 20px;
+        }
+
+        .parentdiv1 p[style*="margin-top: 50px"] {
+          font-size: 14px;
+          margin-top: 20px;
+        }
+
+        .cardimg1 {
+          margin-bottom: 20px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .container {
+          padding: 20px 10px;
+        }
+
+        .heading {
+          font-size: 24px;
+        }
+
+        .textcard1 {
+          font-size: 16px;
+        }
+
+        .parentdiv1 h6[style*="font-size: 25px"] {
+          font-size: 20px;
+        }
+
+        .parentdiv1 p[style*="font-size: 20px"] {
+          font-size: 14px;
+        }
+
+        .parentdiv1 div[style*="gap: 10px"] {
+          gap: 6px;
+        }
+
+        .parentdiv1 button[style*="width: 45px"] {
+          width: 35px;
+          height: 35px;
+          font-size: 12px;
+        }
+
+        .cart {
+          padding: 8px 15px;
+          font-size: 14px;
+        }
+
+        .parentdiv1 ul {
+          font-size: 13px;
+        }
+
+        .parentdiv1 h2[style*="margin-top: 50px"] {
+          font-size: 18px;
+        }
+
+        .parentdiv1 p[style*="margin-top: 50px"] {
+          font-size: 13px;
+        }
+      }
+
+      @media (max-width: 400px) {
+        .heading {
+          font-size: 20px;
+        }
+
+        .textcard1 {
+          font-size: 14px;
+        }
+
+        .parentdiv1 h6[style*="font-size: 25px"] {
+          font-size: 18px;
+        }
+
+        .parentdiv1 button[style*="width: 45px"] {
+          width: 30px;
+          height: 30px;
+          font-size: 11px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+              <h1 class="heading">ATTIRE</h1>
+              <div class="parentdiv1"> 
+                <div>
+                  <img src="./cardimges/25.card.webp" alt="..." class="cardimg1">
+                </div>
+                <div>
+                  <span>
+                    <h6 class="textcard1">
+                      2 PIECE LAWN SUIT PRINTED(UNSTITCHED)
+                    </h6>
+                    <h6 style="font-size: 25px;">
+                      <b>PKR 2,699</b>
+                    </h6>
+                  </span>
+                  <br>
+                  <div>
+                    <p style="font-size: 20px;">GET THE PERFECT FIT CHECK OUT THE OUR SIZE CHART</p>
+                    <div style="gap: 10px; display: flex;"> 
+                      <button type="button" style="width: 45px; height: 45px;">8</button>
+                      <button type="button" style="width: 45px; height: 45px;">10</button>
+                      <button type="button" style="width: 45px; height: 45px;">12</button>
+                      <button type="button" style="width: 45px; height: 45px;">14</button>
+                      <button type="button" style="width: 45px; height: 45px;">16</button>
+                    </div>
+                  </div>
+                  <button class="cart" onclick="window.location.href='cart1.html';">ADD TO CART</button>
+                  <ul style="margin-top: 50px;">
+                    <li>Description: Printed Shirt & Printed Duppata.</li>
+                    <li>Fabric: Lawn</li>
+                    <li>Fit: Causual fit</li>
+                    <li>Color: Blue</li>
+                    <li>Weight: 400g</li> 
+                    <li>Size & fit</li>
+                    <li>Model is Wearing 8 Size</li>
+                  </ul>
+                  <h2 style="margin-top: 50px;">IMPORTANT NOTE</h2>
+                  <p style="margin-top: 50px;">Your order may arrive in multiple packages from differeft locations, but don't worry there's no extra shipping cost. Product color may slightly vary due to photographic lighting.</p>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  </body>
+</html>
